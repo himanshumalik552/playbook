@@ -1,0 +1,5 @@
+{
+  "extends": "@adpulse/tsconfig/library.json",
+  "compilerOptions": { "noEmit": true, "types": ["node"], "declaration": false, "declarationMap": false },
+  "include": ["src", "test", "vitest.config.ts"]
+}

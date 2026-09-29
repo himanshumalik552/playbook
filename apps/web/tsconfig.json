@@ -1,0 +1,15 @@
+{
+  "extends": "@adpulse/tsconfig/react.json",
+  "compilerOptions": {
+    "types": ["vite/client", "vitest/globals", "@testing-library/jest-dom", "node"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@adpulse/types": ["../../packages/types/src/index.ts"],
+      "@adpulse/kpi": ["../../packages/kpi/src/index.ts"],
+      "@adpulse/validation": ["../../packages/validation/src/index.ts"],
+      "@adpulse/ui": ["../../packages/ui/src/index.ts"]
+    }
+  },
+  "include": ["src", "e2e", "vite.config.ts", "playwright.config.ts"]
+}

@@ -1,0 +1,9 @@
+export const APP_ENV = Symbol('APP_ENV');
+export const LOGGER = Symbol('LOGGER');
+export const REDIS = Symbol('REDIS');
+export const JOB_QUEUES = Symbol('JOB_QUEUES');
+export const STORAGE = Symbol('STORAGE');
+export const EMAIL = Symbol('EMAIL');
+export const ENCRYPTION = Symbol('ENCRYPTION');
+export const PROVIDERS = Symbol('PROVIDERS');
+export const ERROR_REPORTER = Symbol('ERROR_REPORTER');

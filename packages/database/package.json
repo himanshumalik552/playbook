@@ -1,0 +1,43 @@
+{
+  "name": "@adpulse/database",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "prisma"
+  ],
+  "scripts": {
+    "build": "prisma generate && tsc -p tsconfig.build.json",
+    "typecheck": "prisma generate && tsc -p tsconfig.json --noEmit",
+    "lint": "eslint src",
+    "test": "dotenv -e ../../.env -- prisma validate",
+    "db:generate": "prisma generate",
+    "db:format": "prisma format",
+    "db:validate": "dotenv -e ../../.env -- prisma validate && prisma format --check",
+    "db:migrate": "dotenv -e ../../.env -- prisma migrate deploy",
+    "db:migrate:dev": "dotenv -e ../../.env -- prisma migrate dev",
+    "db:migrate:status": "dotenv -e ../../.env -- prisma migrate status",
+    "db:seed": "pnpm --filter @adpulse/worker seed",
+    "db:reset": "dotenv -e ../../.env -- prisma migrate reset --force --skip-seed && pnpm --filter @adpulse/worker seed",
+    "postinstall": "prisma generate",
+    "clean": "rimraf dist"
+  },
+  "prisma": {
+    "schema": "prisma/schema.prisma"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.1.0",
+    "prisma": "^6.1.0"
+  },
+  "devDependencies": {
+    "@adpulse/eslint-config": "workspace:*",
+    "@adpulse/tsconfig": "workspace:*",
+    "@types/node": "^22.10.2",
+    "dotenv-cli": "^8.0.0",
+    "eslint": "^9.17.0",
+    "rimraf": "^6.0.1",
+    "typescript": "~5.7.2"
+  }
+}

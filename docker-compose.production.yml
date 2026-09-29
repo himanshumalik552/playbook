@@ -1,0 +1,116 @@
+# Single-host production deployment (see docs/DEPLOYMENT.md). Terminate TLS in front of `web`.
+#   cp .env.example .env.production   # then replace every secret and set NODE_ENV=production
+#   docker compose -f docker-compose.production.yml --env-file .env.production up -d --build
+name: adpulse-prod
+
+x-app: &app
+  env_file: .env.production
+  restart: unless-stopped
+  read_only: true
+  tmpfs:
+    - /tmp
+  security_opt:
+    - no-new-privileges:true
+  cap_drop: [ALL]
+  logging:
+    driver: json-file
+    options: { max-size: '20m', max-file: '5' }
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:?POSTGRES_USER is required}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
+      POSTGRES_DB: ${POSTGRES_DB:-adpulse}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks: [backend]
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command:
+      [
+        'redis-server',
+        '--appendonly',
+        'yes',
+        '--requirepass',
+        '${REDIS_PASSWORD:?REDIS_PASSWORD is required}',
+      ]
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ['CMD-SHELL', 'redis-cli -a "$${REDIS_PASSWORD}" --no-auth-warning ping']
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    networks: [backend]
+
+  migrate:
+    <<: *app
+    build: { context: ., dockerfile: apps/api/Dockerfile }
+    image: ${REGISTRY:-adpulse}/api:${IMAGE_TAG:-latest}
+    command: ['node', 'node_modules/@adpulse/database/dist/migrate.js']
+    restart: 'no'
+    depends_on:
+      postgres: { condition: service_healthy }
+    networks: [backend]
+
+  api:
+    <<: *app
+    image: ${REGISTRY:-adpulse}/api:${IMAGE_TAG:-latest}
+    volumes:
+      - report-storage:/app/storage
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+      redis: { condition: service_healthy }
+    networks: [backend, frontend]
+
+  worker:
+    <<: *app
+    build: { context: ., dockerfile: apps/worker/Dockerfile }
+    image: ${REGISTRY:-adpulse}/worker:${IMAGE_TAG:-latest}
+    # Chromium needs a writable, reasonably sized /dev/shm for PDF rendering.
+    shm_size: 512m
+    volumes:
+      - report-storage:/app/storage
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+      redis: { condition: service_healthy }
+    networks: [backend]
+
+  web:
+    build: { context: ., dockerfile: apps/web/Dockerfile }
+    image: ${REGISTRY:-adpulse}/web:${IMAGE_TAG:-latest}
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /etc/nginx/conf.d
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+    ports:
+      - '${WEB_PORT:-8080}:8080'
+    depends_on:
+      api: { condition: service_healthy }
+    networks: [frontend]
+
+# Only `web` publishes a port. `backend` keeps egress because the API and worker call Google APIs and SMTP.
+networks:
+  frontend:
+  backend:
+
+volumes:
+  postgres-data:
+  redis-data:
+  report-storage:
