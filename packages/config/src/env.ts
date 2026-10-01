@@ -30,7 +30,23 @@ export const envSchema = z
     TRUST_PROXY: booleanString,
 
     DATABASE_URL: z.string().min(1, 'DATABASE_URL is required'),
-    REDIS_URL: z.string().min(1, 'REDIS_URL is required'),
+    REDIS_URL: z
+      .string()
+      .min(1, 'REDIS_URL is required')
+      .refine(
+        (value) => {
+          try {
+            const parsed = new URL(value);
+            return parsed.protocol === 'redis:' || parsed.protocol === 'rediss:';
+          } catch {
+            return false;
+          }
+        },
+        {
+          message:
+            'REDIS_URL must be a redis:// or rediss:// connection URL (not a redis-cli command). Example: rediss://default:TOKEN@HOST:6379',
+        },
+      ),
 
     JWT_ACCESS_SECRET: z.string().min(32, 'JWT_ACCESS_SECRET must be at least 32 characters'),
     JWT_REFRESH_SECRET: z.string().min(32, 'JWT_REFRESH_SECRET must be at least 32 characters'),

@@ -23,6 +23,18 @@ describe('parseEnv', () => {
     expect(() => parseEnv({ ...base, ENCRYPTION_KEY: 'not-base64' })).toThrow(/ENCRYPTION_KEY/);
   });
 
+  it('rejects redis-cli command strings as REDIS_URL', () => {
+    expect(() =>
+      parseEnv({
+        ...base,
+        REDIS_URL: 'redis://redis-cli --tls -u redis://default:token@host:6379',
+      }),
+    ).toThrow(/REDIS_URL/);
+    expect(parseEnv({ ...base, REDIS_URL: 'rediss://default:token@host:6379' }).REDIS_URL).toBe(
+      'rediss://default:token@host:6379',
+    );
+  });
+
   it('requires Google credentials in google mode', () => {
     expect(() => parseEnv({ ...base, NODE_ENV: 'production', INTEGRATION_MODE: 'google' })).toThrow(
       /GOOGLE_ADS_DEVELOPER_TOKEN/,
