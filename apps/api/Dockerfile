@@ -10,6 +10,7 @@ ENV PNPM_HOME=/pnpm \
     TURBO_TELEMETRY_DISABLED=1
 RUN apt-get update \
  && apt-get install -y --no-install-recommends openssl ca-certificates \
+ && npm install -g corepack@latest \
  && rm -rf /var/lib/apt/lists/* \
  && corepack enable
 WORKDIR /repo
