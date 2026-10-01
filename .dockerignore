@@ -3,7 +3,8 @@
 **/coverage
 **/.turbo
 **/*.tsbuildinfo
-**/storage
+/storage
+/apps/worker/storage
 **/playwright-report
 **/test-results
 **/.auth
