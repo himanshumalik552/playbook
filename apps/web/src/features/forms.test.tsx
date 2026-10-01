@@ -2,8 +2,8 @@ import { screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { api, ApiError } from '@/api/client';
-import { useAuth } from '@/providers/AuthProvider';
-import { useOrg } from '@/providers/OrgProvider';
+import { useAuth } from '@/providers/auth';
+import { useOrg } from '@/providers/org';
 import { byUrl } from '@/test/fixtures';
 import { orgValue, renderWithProviders } from '@/test/utils';
 import { SignInPage } from './auth/SignInPage';
@@ -16,8 +16,8 @@ vi.mock('react-router-dom', async (importOriginal) => ({
   ...(await importOriginal<Record<string, unknown>>()),
   useNavigate: () => navigate,
 }));
-vi.mock('@/providers/OrgProvider', () => ({ useOrg: vi.fn() }));
-vi.mock('@/providers/AuthProvider', () => ({ useAuth: vi.fn(), ME_QUERY_KEY: ['me'] }));
+vi.mock('@/providers/org', () => ({ useOrg: vi.fn() }));
+vi.mock('@/providers/auth', () => ({ useAuth: vi.fn(), ME_QUERY_KEY: ['me'] }));
 vi.mock('@/api/client', async (importOriginal) => ({
   ...(await importOriginal<Record<string, unknown>>()),
   api: { get: vi.fn(), page: vi.fn(), post: vi.fn(), put: vi.fn(), patch: vi.fn(), delete: vi.fn() },

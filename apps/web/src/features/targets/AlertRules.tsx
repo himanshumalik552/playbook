@@ -19,7 +19,7 @@ import { useSnackbar } from 'notistack';
 import { useEffect, useState } from 'react';
 import { errorMessage } from '@/api/client';
 import { humanize } from '@/lib/format';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 import { useAlertRuleMutations, useAlertRules } from './api';
 
 function thresholdLabel(key: string) {

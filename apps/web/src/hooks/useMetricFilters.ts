@@ -3,7 +3,7 @@ import { useCallback, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { toParams } from '@/api/client';
 import { defaultRange, isValidRange } from '@/lib/dates';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 
 export interface MetricFilters {
   from: string;

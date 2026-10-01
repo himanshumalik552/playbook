@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import { useFilterOptions } from '@/hooks/common';
 import type { MetricFilterPatch, MetricFilters } from '@/hooks/useMetricFilters';
 import { DATE_PRESETS, type DatePreset, isValidRange, matchPreset, presetRange } from '@/lib/dates';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 
 type FilterControl = 'account' | 'campaigns' | 'device' | 'location' | 'objective' | 'compare';
 

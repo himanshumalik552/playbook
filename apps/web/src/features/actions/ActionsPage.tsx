@@ -33,7 +33,7 @@ import { useMembers } from '@/hooks/common';
 import { useTableParams } from '@/hooks/useMetricFilters';
 import { formatDate, formatRelative, humanize } from '@/lib/format';
 import { ACTION_STATUS_LABELS, ACTION_STATUS_TONE, PRIORITY_TONE, RESULT_TONE } from '@/lib/status';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 import { ActionDetailDrawer } from './ActionDetailDrawer';
 import { ActionFormDialog } from './ActionFormDialog';
 import { type ActionBoard, useActionBoard, useActionList, useTransitionAction } from './api';

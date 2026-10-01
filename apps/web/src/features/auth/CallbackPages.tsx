@@ -9,8 +9,8 @@ import { useEffect, useRef } from 'react';
 import { Link as RouterLink, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { api, errorMessage } from '@/api/client';
 import { AuthCard } from '@/layout/PublicLayout';
-import { useAuth } from '@/providers/AuthProvider';
-import { useOrg } from '@/providers/OrgProvider';
+import { useAuth } from '@/providers/auth';
+import { useOrg } from '@/providers/org';
 import { safeNext } from './safeNext';
 
 const REASONS: Record<string, string> = {

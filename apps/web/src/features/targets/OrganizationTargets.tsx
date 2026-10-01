@@ -12,7 +12,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { errorMessage } from '@/api/client';
 import { UnsavedChangesDialog } from '@/components/UnsavedChangesDialog';
 import { useFormat } from '@/lib/format';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 import { TARGET_METRIC_INFO, type TargetsResponse, unitAdornment, useTargetMutations } from './api';
 
 type FormValues = Record<TargetMetric, string>;

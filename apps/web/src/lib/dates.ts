@@ -12,6 +12,8 @@ export const DATE_PRESETS: { value: DatePreset; label: string }[] = [
   { value: 'lastMonth', label: 'Last month' },
 ];
 
+export const browserTimezone = () => Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+
 /** Yesterday in the reporting timezone: the last day with complete data. */
 export function lastCompleteDay(timeZone: string, now = new Date()): string {
   return addDays(isoDateInTimezone(now, timeZone), -1);

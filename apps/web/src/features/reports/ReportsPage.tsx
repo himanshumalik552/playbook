@@ -30,7 +30,7 @@ import { downloadFile, errorMessage } from '@/api/client';
 import { Can, RequirePermission } from '@/components/RequirePermission';
 import { formatBytes, formatDate, humanize, useFormat } from '@/lib/format';
 import { REPORT_STATUS_TONE } from '@/lib/status';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 import { useReportHistory, useReportMutations, useReportTemplates } from './api';
 import { ReportGenerator } from './ReportGenerator';
 import { TemplateDialog } from './TemplateDialog';

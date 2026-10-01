@@ -20,7 +20,7 @@ import { UnsavedChangesDialog } from '@/components/UnsavedChangesDialog';
 import { useFilterOptions } from '@/hooks/common';
 import { humanize } from '@/lib/format';
 import { lastCompleteDay } from '@/lib/dates';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 import { useReportMutations, useReportPreview, useReportTemplates } from './api';
 import { defaultReportPeriod } from './period';
 import { ReportPreview } from './ReportPreview';

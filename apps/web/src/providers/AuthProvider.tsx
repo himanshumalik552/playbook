@@ -1,22 +1,9 @@
 import type { CurrentUser } from '@adpulse/types';
 import type { LoginInput } from '@adpulse/validation';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { createContext, type ReactNode, useCallback, useContext, useEffect, useMemo } from 'react';
+import { type ReactNode, useCallback, useEffect, useMemo } from 'react';
 import { api, ApiError, onSessionExpired } from '@/api/client';
-
-export const ME_QUERY_KEY = ['me'] as const;
-
-interface AuthValue {
-  user: CurrentUser | null;
-  loading: boolean;
-  isSuperAdmin: boolean;
-  signIn: (input: LoginInput) => Promise<CurrentUser>;
-  register: (input: { name: string; email: string; password: string }) => Promise<CurrentUser>;
-  signOut: () => Promise<void>;
-  refreshUser: () => Promise<CurrentUser | null>;
-}
-
-const AuthContext = createContext<AuthValue | null>(null);
+import { AuthContext, type AuthValue, ME_QUERY_KEY } from './auth';
 
 async function fetchMe(): Promise<CurrentUser | null> {
   try {
@@ -96,10 +83,4 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     [user, me.isPending, signIn, register, signOut, refreshUser],
   );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-}
-
-export function useAuth(): AuthValue {
-  const ctx = useContext(AuthContext);
-  if (!ctx) throw new Error('useAuth must be used within AuthProvider');
-  return ctx;
 }

@@ -22,7 +22,7 @@ import { FormTextField } from '@/components/form';
 import { useFilterOptions, useMembers } from '@/hooks/common';
 import { humanize } from '@/lib/format';
 import { schemaResolver } from '@/lib/schemaResolver';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 import { useCreateAction, useUpdateAction } from './api';
 
 export interface ActionPrefill {

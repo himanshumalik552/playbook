@@ -4,7 +4,7 @@ import { KpiCard } from '@adpulse/ui';
 import Box from '@mui/material/Box';
 import { toKpiChange, useFormat } from '@/lib/format';
 
-export const DASHBOARD_KPIS: KpiKey[] = [
+const DASHBOARD_KPIS: KpiKey[] = [
   'cost',
   'impressions',
   'clicks',

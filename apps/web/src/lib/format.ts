@@ -10,7 +10,7 @@ import type { KpiKey, MetricChange } from '@adpulse/types';
 import type { KpiChange } from '@adpulse/ui';
 import { format as formatDateFns, parseISO } from 'date-fns';
 import { useMemo } from 'react';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 
 export const LOCALE = typeof navigator === 'undefined' ? 'en-US' : navigator.language || 'en-US';
 
@@ -89,6 +89,11 @@ export function createFormatters(currencyCode: string, timeZone: string): Format
       formatPercent(value ?? null, { ...base, ...(decimals === undefined ? {} : { decimals }) }),
     dateTime: (iso) => formatDateTime(iso, timeZone),
   };
+}
+
+export function formatAlertValue(metric: string, value: number | null, f: Formatters): string {
+  if (value === null) return '—';
+  return metric in METRIC_DEFINITIONS ? f.metric(metric as KpiKey, value) : f.number(value, 2);
 }
 
 /** Formatters bound to the active organization's currency and reporting timezone. */

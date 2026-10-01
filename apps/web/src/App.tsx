@@ -9,7 +9,7 @@ import { ThemeModeProvider } from '@/providers/ThemeModeProvider';
 import { FullPageLoader } from '@/components/FullPageLoader';
 import { createRouter } from '@/router';
 
-export function createQueryClient() {
+function createQueryClient() {
   return new QueryClient({
     defaultOptions: {
       queries: {

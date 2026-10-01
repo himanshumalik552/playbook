@@ -37,7 +37,7 @@ import { QueryError } from '@/components/QueryState';
 import { Can, RequirePermission } from '@/components/RequirePermission';
 import { formatDate, formatRelative, humanize, useFormat } from '@/lib/format';
 import { CONNECTION_STATUS_TONE, SYNC_STATUS_TONE } from '@/lib/status';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 import { AccountPicker } from './AccountPicker';
 import {
   useAdAccounts,

@@ -6,7 +6,7 @@ import type {
 } from '@adpulse/types';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { api } from '@/api/client';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 
 export function useDashboardOverview(params: Record<string, string | number | boolean>) {
   const { organizationId } = useOrg();

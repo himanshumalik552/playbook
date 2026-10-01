@@ -21,7 +21,7 @@ import { api, errorMessage, toParams } from '@/api/client';
 import { BreakdownBarChart } from '@/components/charts/charts';
 import { formatDateTime, humanize, useFormat } from '@/lib/format';
 import { CAMPAIGN_STATUS_TONE } from '@/lib/status';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 import { metricColumn } from './columns';
 
 type Params = Record<string, string | number | boolean>;

@@ -4,10 +4,8 @@ import TextField from '@mui/material/TextField';
 import { SUPPORTED_CURRENCIES } from '@adpulse/types';
 import { type Control, Controller, type FieldPath, type FieldValues } from 'react-hook-form';
 
-export const TIMEZONES: string[] =
+const TIMEZONES: string[] =
   typeof Intl.supportedValuesOf === 'function' ? Intl.supportedValuesOf('timeZone') : ['UTC'];
-
-export const browserTimezone = () => Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
 
 interface Props<T extends FieldValues> {
   control: Control<T>;

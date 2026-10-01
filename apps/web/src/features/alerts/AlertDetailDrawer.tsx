@@ -24,18 +24,9 @@ import { FormTextField } from '@/components/form';
 import { QueryState } from '@/components/QueryState';
 import { ActionFormDialog } from '@/features/actions/ActionFormDialog';
 import { useMembers } from '@/hooks/common';
-import { formatDate, humanize, useFormat } from '@/lib/format';
+import { formatAlertValue, formatDate, humanize, useFormat } from '@/lib/format';
 import { ALERT_STATUS_TONE, SEVERITY_TONE } from '@/lib/status';
-import { useOrg } from '@/providers/OrgProvider';
-
-export function formatAlertValue(
-  metric: string,
-  value: number | null,
-  f: ReturnType<typeof useFormat>,
-): string {
-  if (value === null) return '—';
-  return metric in METRIC_DEFINITIONS ? f.metric(metric as KpiKey, value) : f.number(value, 2);
-}
+import { useOrg } from '@/providers/org';
 
 function Fact({ label, value }: { label: string; value: string }) {
   return (

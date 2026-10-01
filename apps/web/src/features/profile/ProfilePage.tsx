@@ -22,7 +22,7 @@ import { api, errorMessage } from '@/api/client';
 import { FormTextField } from '@/components/form';
 import { UnsavedChangesDialog } from '@/components/UnsavedChangesDialog';
 import { formatRelative, useFormat } from '@/lib/format';
-import { ME_QUERY_KEY, useAuth } from '@/providers/AuthProvider';
+import { ME_QUERY_KEY, useAuth } from '@/providers/auth';
 
 const SESSIONS_KEY = ['me', 'sessions'] as const;
 

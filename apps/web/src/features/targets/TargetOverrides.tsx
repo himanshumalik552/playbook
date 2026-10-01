@@ -22,7 +22,7 @@ import { FormTextField } from '@/components/form';
 import { useFilterOptions } from '@/hooks/common';
 import { formatRelative, useFormat } from '@/lib/format';
 import { schemaResolver } from '@/lib/schemaResolver';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 import { TARGET_METRIC_INFO, type TargetsResponse, unitAdornment, useTargetMutations } from './api';
 
 const EMPTY: TargetInput = {

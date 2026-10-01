@@ -4,10 +4,9 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { api, errorMessage } from '@/api/client';
-import { formatDate, formatRelative, humanize, useFormat } from '@/lib/format';
+import { formatAlertValue, formatDate, formatRelative, humanize, useFormat } from '@/lib/format';
 import { ALERT_STATUS_TONE, SEVERITY_TONE } from '@/lib/status';
-import { useOrg } from '@/providers/OrgProvider';
-import { formatAlertValue } from './AlertDetailDrawer';
+import { useOrg } from '@/providers/org';
 
 interface AlertsTableProps {
   params: Record<string, string | number | boolean>;
@@ -19,7 +18,7 @@ interface AlertsTableProps {
   selection?: { selected: ReadonlySet<string>; onChange: (next: Set<string>) => void };
 }
 
-export function useAlerts(params: Record<string, string | number | boolean>) {
+function useAlerts(params: Record<string, string | number | boolean>) {
   const { organizationId } = useOrg();
   return useQuery({
     queryKey: ['org', organizationId, 'alerts', 'list', params],

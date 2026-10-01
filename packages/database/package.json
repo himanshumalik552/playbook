@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "build": "prisma generate && tsc -p tsconfig.build.json",
-    "typecheck": "prisma generate && tsc -p tsconfig.json --noEmit",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "eslint src",
     "test": "dotenv -e ../../.env -- prisma validate",
     "db:generate": "prisma generate",
@@ -23,9 +23,6 @@
     "db:reset": "dotenv -e ../../.env -- prisma migrate reset --force --skip-seed && pnpm --filter @adpulse/worker seed",
     "postinstall": "prisma generate",
     "clean": "rimraf dist"
-  },
-  "prisma": {
-    "schema": "prisma/schema.prisma"
   },
   "dependencies": {
     "@prisma/client": "^6.1.0",

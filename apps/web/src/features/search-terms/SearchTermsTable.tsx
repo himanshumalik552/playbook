@@ -25,7 +25,7 @@ import { ActionFormDialog, type ActionPrefill } from '@/features/actions/ActionF
 import { metricColumn } from '@/features/campaigns/columns';
 import { useDebounced } from '@/hooks/common';
 import { formatDateTime, useFormat } from '@/lib/format';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 
 const FLAG_TONE: Record<SearchTermFlag, StatusTone> = {
   NEGATIVE_CANDIDATE: 'error',

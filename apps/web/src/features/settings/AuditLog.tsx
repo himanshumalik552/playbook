@@ -9,7 +9,7 @@ import { useState } from 'react';
 import { api, errorMessage, toParams } from '@/api/client';
 import { useDebounced } from '@/hooks/common';
 import { humanize, useFormat } from '@/lib/format';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 
 export function AuditLog() {
   const f = useFormat();

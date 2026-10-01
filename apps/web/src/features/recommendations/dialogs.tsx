@@ -31,7 +31,7 @@ import { z } from 'zod';
 import { FormTextField } from '@/components/form';
 import { useFilterOptions, useMembers } from '@/hooks/common';
 import { humanize } from '@/lib/format';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 
 export function DismissDialog({
   recommendation,

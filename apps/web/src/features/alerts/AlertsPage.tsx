@@ -22,7 +22,7 @@ import { Can, RequirePermission } from '@/components/RequirePermission';
 import { useMembers } from '@/hooks/common';
 import { useTableParams } from '@/hooks/useMetricFilters';
 import { humanize } from '@/lib/format';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 import { AlertDetailDrawer } from './AlertDetailDrawer';
 import { AlertsTable } from './AlertsTable';
 

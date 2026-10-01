@@ -27,8 +27,8 @@ import { FormTextField } from '@/components/form';
 import { LocaleFields } from '@/components/LocaleFields';
 import { RequirePermission } from '@/components/RequirePermission';
 import { UnsavedChangesDialog } from '@/components/UnsavedChangesDialog';
-import { useOrg } from '@/providers/OrgProvider';
-import { ME_QUERY_KEY } from '@/providers/AuthProvider';
+import { useOrg } from '@/providers/org';
+import { ME_QUERY_KEY } from '@/providers/auth';
 import { AuditLog } from './AuditLog';
 
 type BooleanPreference =

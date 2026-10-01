@@ -30,8 +30,8 @@ import { FormTextField } from '@/components/form';
 import { Can, RequirePermission } from '@/components/RequirePermission';
 import { useMembers } from '@/hooks/common';
 import { formatDate, formatRelative } from '@/lib/format';
-import { useAuth } from '@/providers/AuthProvider';
-import { useOrg } from '@/providers/OrgProvider';
+import { useAuth } from '@/providers/auth';
+import { useOrg } from '@/providers/org';
 
 const ROLE_DESCRIPTIONS: Record<OrgRole, string> = {
   ORGANIZATION_ADMIN: 'Everything, including integrations, members and organization settings',

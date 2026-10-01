@@ -32,9 +32,9 @@ import { useState } from 'react';
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { useFilterOptions } from '@/hooks/common';
-import { useAuth } from '@/providers/AuthProvider';
-import { useOrg } from '@/providers/OrgProvider';
-import { useThemeMode } from '@/providers/ThemeModeProvider';
+import { useAuth } from '@/providers/auth';
+import { useOrg } from '@/providers/org';
+import { useThemeMode } from '@/providers/themeMode';
 import { Logo } from './Logo';
 import { NAV_SECTIONS } from './navigation';
 

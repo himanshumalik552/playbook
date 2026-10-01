@@ -17,7 +17,7 @@ import { Link as RouterLink, useSearchParams } from 'react-router-dom';
 import { api, errorMessage } from '@/api/client';
 import { FormTextField } from '@/components/form';
 import { AuthCard } from '@/layout/PublicLayout';
-import { useAuth } from '@/providers/AuthProvider';
+import { useAuth } from '@/providers/auth';
 
 const backToSignIn = (
   <Link component={RouterLink} to="/sign-in">

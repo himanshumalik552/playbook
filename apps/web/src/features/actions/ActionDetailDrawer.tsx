@@ -25,7 +25,7 @@ import { QueryState } from '@/components/QueryState';
 import { useMembers } from '@/hooks/common';
 import { formatDate, formatDateTime, humanize, useFormat } from '@/lib/format';
 import { ACTION_STATUS_LABELS, ACTION_STATUS_TONE, PRIORITY_TONE, RESULT_TONE } from '@/lib/status';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 import { ActionFormDialog } from './ActionFormDialog';
 import { useAction, useCommentAction, useDeleteAction, useTransitionAction, useUpdateAction } from './api';
 import { NEEDS_DETAILS, type PendingTransition, TransitionDialog } from './TransitionDialog';

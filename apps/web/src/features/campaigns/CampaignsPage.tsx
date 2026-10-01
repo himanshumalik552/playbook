@@ -17,7 +17,7 @@ import { RequirePermission } from '@/components/RequirePermission';
 import { useDebounced } from '@/hooks/common';
 import { useMetricFilters, useTableParams } from '@/hooks/useMetricFilters';
 import { humanize } from '@/lib/format';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 import { campaignColumns } from './columns';
 
 function CampaignsContent() {

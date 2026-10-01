@@ -39,7 +39,7 @@ import { Can, RequirePermission } from '@/components/RequirePermission';
 import { useTableParams } from '@/hooks/useMetricFilters';
 import { formatRelative, humanize } from '@/lib/format';
 import { CONFIDENCE_TONE, RECOMMENDATION_STATUS_TONE } from '@/lib/status';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 import { ConvertDialog, type ConvertInput, CreateRecommendationDialog, DismissDialog } from './dialogs';
 
 function metricLabel(m: string) {

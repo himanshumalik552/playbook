@@ -5,14 +5,14 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { api, ApiError } from '@/api/client';
 import { KpiGrid } from '@/features/dashboard/KpiGrid';
 import type { MetricFilters } from '@/hooks/useMetricFilters';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 import { FILTER_OPTIONS, kpis } from '@/test/fixtures';
 import { orgValue, renderWithProviders } from '@/test/utils';
 import { FilterBar } from './FilterBar';
 import { QueryState } from './QueryState';
 import { Can, RequirePermission } from './RequirePermission';
 
-vi.mock('@/providers/OrgProvider', () => ({ useOrg: vi.fn() }));
+vi.mock('@/providers/org', () => ({ useOrg: vi.fn() }));
 vi.mock('@/api/client', async (importOriginal) => ({
   ...(await importOriginal<Record<string, unknown>>()),
   api: { get: vi.fn(), page: vi.fn() },

@@ -27,12 +27,13 @@ import { Link as RouterLink, useNavigate, useSearchParams } from 'react-router-d
 import { z } from 'zod';
 import { api, errorMessage } from '@/api/client';
 import { FormTextField } from '@/components/form';
-import { browserTimezone, LocaleFields } from '@/components/LocaleFields';
+import { LocaleFields } from '@/components/LocaleFields';
+import { browserTimezone } from '@/lib/dates';
 import { AccountPicker } from '@/features/integrations/AccountPicker';
 import { useConnectDemo, useConnectGoogle, useIntegrationsOverview } from '@/features/integrations/api';
 import { Logo } from '@/layout/Logo';
-import { useAuth } from '@/providers/AuthProvider';
-import { useOrg } from '@/providers/OrgProvider';
+import { useAuth } from '@/providers/auth';
+import { useOrg } from '@/providers/org';
 import { FullPageLoader } from '@/components/FullPageLoader';
 
 const STEPS = ['Organization', 'Team', 'Data source', 'Ad accounts', 'Targets', 'Done'];

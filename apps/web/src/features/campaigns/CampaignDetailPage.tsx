@@ -37,7 +37,7 @@ import { SearchTermsTable } from '@/features/search-terms/SearchTermsTable';
 import { useMetricFilters } from '@/hooks/useMetricFilters';
 import { formatDate, humanize, useFormat } from '@/lib/format';
 import { ACTION_STATUS_LABELS, ACTION_STATUS_TONE, CAMPAIGN_STATUS_TONE, PRIORITY_TONE } from '@/lib/status';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 import { AdGroupsTab, BreakdownTab, ChangeHistoryTab, KeywordsTab, LandingPagesTab } from './tabs';
 
 const TABS = [

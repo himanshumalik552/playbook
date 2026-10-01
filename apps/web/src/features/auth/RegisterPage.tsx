@@ -13,7 +13,7 @@ import { Link as RouterLink, useNavigate, useSearchParams } from 'react-router-d
 import { errorMessage } from '@/api/client';
 import { FormTextField } from '@/components/form';
 import { AuthCard } from '@/layout/PublicLayout';
-import { useAuth } from '@/providers/AuthProvider';
+import { useAuth } from '@/providers/auth';
 import { safeNext } from './safeNext';
 
 type RegisterForm = Omit<RegisterInput, 'acceptTerms'> & { acceptTerms: boolean };

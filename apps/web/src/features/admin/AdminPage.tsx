@@ -36,7 +36,7 @@ import { QueryError } from '@/components/QueryState';
 import { useDebounced } from '@/hooks/common';
 import { formatDate, formatDateTime, formatRelative, humanize } from '@/lib/format';
 import { SYNC_STATUS_TONE } from '@/lib/status';
-import { useAuth } from '@/providers/AuthProvider';
+import { useAuth } from '@/providers/auth';
 
 const ADMIN_KEY = ['admin'] as const;
 

@@ -2,7 +2,7 @@ import type { AlertRuleDto, ChangeLogDto, TargetDto, TargetMetric } from '@adpul
 import type { TargetPayload } from '@adpulse/validation';
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/api/client';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 
 export interface TargetsResponse {
   targets: TargetDto[];

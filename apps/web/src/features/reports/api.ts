@@ -1,7 +1,7 @@
 import type { GeneratedReportDto, ReportData, ReportTemplateDto } from '@adpulse/types';
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/api/client';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 
 const ACTIVE = new Set(['QUEUED', 'PROCESSING']);
 

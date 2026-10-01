@@ -2,31 +2,16 @@ import {
   hasPermission,
   type MembershipSummary,
   type OrganizationSettings,
-  type OrgRole,
   type Permission,
 } from '@adpulse/types';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { createContext, type ReactNode, useCallback, useContext, useMemo, useState } from 'react';
+import { type ReactNode, useCallback, useMemo, useState } from 'react';
 import { api, setActiveOrganizationId } from '@/api/client';
-import { ME_QUERY_KEY, useAuth } from './AuthProvider';
+import { ME_QUERY_KEY, useAuth } from './auth';
+import { OrgContext, type OrgValue } from './org';
 
 const ORG_KEY = 'adpulse.activeOrganization';
 const accountKey = (orgId: string) => `adpulse.activeAccount.${orgId}`;
-
-interface OrgValue {
-  membership: MembershipSummary | null;
-  organizationId: string | null;
-  role: OrgRole | null;
-  settings: OrganizationSettings | null;
-  settingsLoading: boolean;
-  can: (permission: Permission) => boolean;
-  switchOrganization: (organizationId: string) => void;
-  /** Header account switcher; null means all accounts. */
-  adAccountId: string | null;
-  setAdAccountId: (id: string | null) => void;
-}
-
-const OrgContext = createContext<OrgValue | null>(null);
 
 function pickMembership(
   memberships: MembershipSummary[],
@@ -105,10 +90,4 @@ export function OrgProvider({ children }: { children: ReactNode }) {
     ],
   );
   return <OrgContext.Provider value={value}>{children}</OrgContext.Provider>;
-}
-
-export function useOrg(): OrgValue {
-  const ctx = useContext(OrgContext);
-  if (!ctx) throw new Error('useOrg must be used within OrgProvider');
-  return ctx;
 }

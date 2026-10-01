@@ -2,12 +2,12 @@ import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { api, ApiError } from '@/api/client';
-import { useOrg } from '@/providers/OrgProvider';
+import { useOrg } from '@/providers/org';
 import { byUrl, campaignRow, EMPTY_SUMMARY, FILTER_OPTIONS, overview, page, trend } from '@/test/fixtures';
 import { orgValue, renderWithProviders } from '@/test/utils';
 import { DashboardPage } from './DashboardPage';
 
-vi.mock('@/providers/OrgProvider', () => ({ useOrg: vi.fn() }));
+vi.mock('@/providers/org', () => ({ useOrg: vi.fn() }));
 vi.mock('@/api/client', async (importOriginal) => ({
   ...(await importOriginal<Record<string, unknown>>()),
   api: { get: vi.fn(), page: vi.fn(), post: vi.fn() },

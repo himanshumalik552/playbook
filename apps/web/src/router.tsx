@@ -1,45 +1,10 @@
 import type { ComponentType } from 'react';
-import { createBrowserRouter, Navigate, Outlet, type RouteObject, useLocation } from 'react-router-dom';
-import { FullPageLoader } from '@/components/FullPageLoader';
+import { createBrowserRouter, Navigate, type RouteObject } from 'react-router-dom';
+import { RedirectIfSignedIn, RequireAuth, RequireOrganization } from '@/components/RouteGuards';
 import { CallbackRoutes } from '@/features/auth/routes';
 import { NotFoundPage, PrivacyPage, RouteErrorPage, TermsPage } from '@/features/public/StaticPages';
 import { AppShell } from '@/layout/AppShell';
 import { PublicLayout } from '@/layout/PublicLayout';
-import { useAuth } from '@/providers/AuthProvider';
-import { useOrg } from '@/providers/OrgProvider';
-
-function RequireAuth() {
-  const { user, loading } = useAuth();
-  const location = useLocation();
-  if (loading) return <FullPageLoader />;
-  if (!user)
-    return (
-      <Navigate to={`/sign-in?next=${encodeURIComponent(location.pathname + location.search)}`} replace />
-    );
-  return <Outlet />;
-}
-
-function RequireOrganization() {
-  const { user, isSuperAdmin } = useAuth();
-  const { membership, settingsLoading, can } = useOrg();
-  const location = useLocation();
-  if (!membership) {
-    if (isSuperAdmin && location.pathname.startsWith('/admin')) return <Outlet />;
-    if (isSuperAdmin && location.pathname === '/profile') return <Outlet />;
-    return <Navigate to={isSuperAdmin ? '/admin' : '/onboarding'} replace />;
-  }
-  if (!membership.onboardingCompleted && can('organization:manage') && user)
-    return <Navigate to="/onboarding" replace />;
-  if (settingsLoading) return <FullPageLoader />;
-  return <Outlet />;
-}
-
-function RedirectIfSignedIn() {
-  const { user, loading } = useAuth();
-  if (loading) return <FullPageLoader />;
-  if (user) return <Navigate to="/dashboard" replace />;
-  return <Outlet />;
-}
 
 function page<M, K extends keyof M>(loader: () => Promise<M>, name: K): Pick<RouteObject, 'lazy'> {
   return { lazy: async () => ({ Component: (await loader())[name] as ComponentType }) };
