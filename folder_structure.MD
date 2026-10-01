@@ -33,16 +33,16 @@ PlayBook/
 
 ### `apps/api` — Backend API (NestJS 11, Jest)
 
-| Path | Contains |
-| --- | --- |
-| `src/main.ts`, `src/bootstrap.ts` | Server entry point and app bootstrap (middleware, pipes, CORS, etc.) |
-| `src/app.module.ts` | Root NestJS module that wires all feature modules together |
-| `src/common/` | Cross-cutting HTTP helpers: guards, decorators, DTO helpers, response envelope interceptor, exception filter, request-id middleware, idempotency, CSV export, sorting, entity mappers |
-| `src/infra/` | Infrastructure providers: `PrismaService`, Redis-backed rate-limit storage, DI tokens |
-| `src/modules/<feature>/` | One folder per business feature, each with `*.module.ts`, `*.controller.ts` (routes), `*.service.ts` (logic) and optional `*.dto.ts` |
-| `test/unit/` | Unit tests (`*.spec.ts`) |
-| `test/integration/` | Integration tests (`*.int-spec.ts`) against a real DB — auth, RBAC, tenant isolation |
-| `Dockerfile` | Production container image |
+| Path                              | Contains                                                                                                                                                                              |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/main.ts`, `src/bootstrap.ts` | Server entry point and app bootstrap (middleware, pipes, CORS, etc.)                                                                                                                  |
+| `src/app.module.ts`               | Root NestJS module that wires all feature modules together                                                                                                                            |
+| `src/common/`                     | Cross-cutting HTTP helpers: guards, decorators, DTO helpers, response envelope interceptor, exception filter, request-id middleware, idempotency, CSV export, sorting, entity mappers |
+| `src/infra/`                      | Infrastructure providers: `PrismaService`, Redis-backed rate-limit storage, DI tokens                                                                                                 |
+| `src/modules/<feature>/`          | One folder per business feature, each with `*.module.ts`, `*.controller.ts` (routes), `*.service.ts` (logic) and optional `*.dto.ts`                                                  |
+| `test/unit/`                      | Unit tests (`*.spec.ts`)                                                                                                                                                              |
+| `test/integration/`               | Integration tests (`*.int-spec.ts`) against a real DB — auth, RBAC, tenant isolation                                                                                                  |
+| `Dockerfile`                      | Production container image                                                                                                                                                            |
 
 Feature modules in `src/modules/`:
 `actions`, `admin`, `alerts`, `analytics`, `audit-logs`, `auth` (JWT, cookies, OAuth state), `campaigns`, `dashboard`, `health`, `integrations`, `organizations`, `performance`, `recommendations`, `reports`, `sync`, `targets`, `users`.
@@ -51,21 +51,21 @@ Feature modules in `src/modules/`:
 
 ### `apps/web` — Frontend (React 18, Vite, MUI 6, React Query, React Router)
 
-| Path | Contains |
-| --- | --- |
-| `index.html`, `src/main.tsx`, `src/App.tsx` | App entry and root component |
-| `src/router.tsx` | Route definitions |
-| `src/api/` | HTTP client used to call the backend API |
-| `src/features/<feature>/` | Page-level screens per feature (pages, table columns, tabs) |
-| `src/components/` | App-specific reusable components (filter bar, forms, error boundary, permission gate, loaders); `charts/` holds chart components |
-| `src/layout/` | App shell, navigation, public layout, logo |
-| `src/providers/` | React context providers: auth, current organization, theme mode |
-| `src/hooks/` | Custom React hooks (e.g. metric filters) |
-| `src/lib/` | Pure helper functions: date/number formatting, status helpers, schema resolver |
-| `src/test/` | Unit test setup for Vitest |
-| `e2e/` | Playwright end-to-end tests (`*.spec.ts`) and auth setup |
-| `public/` | Static assets served as-is |
-| `vite.config.ts`, `playwright.config.ts` | Build/dev server and E2E config |
+| Path                                        | Contains                                                                                                                         |
+| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `index.html`, `src/main.tsx`, `src/App.tsx` | App entry and root component                                                                                                     |
+| `src/router.tsx`                            | Route definitions                                                                                                                |
+| `src/api/`                                  | HTTP client used to call the backend API                                                                                         |
+| `src/features/<feature>/`                   | Page-level screens per feature (pages, table columns, tabs)                                                                      |
+| `src/components/`                           | App-specific reusable components (filter bar, forms, error boundary, permission gate, loaders); `charts/` holds chart components |
+| `src/layout/`                               | App shell, navigation, public layout, logo                                                                                       |
+| `src/providers/`                            | React context providers: auth, current organization, theme mode                                                                  |
+| `src/hooks/`                                | Custom React hooks (e.g. metric filters)                                                                                         |
+| `src/lib/`                                  | Pure helper functions: date/number formatting, status helpers, schema resolver                                                   |
+| `src/test/`                                 | Unit test setup for Vitest                                                                                                       |
+| `e2e/`                                      | Playwright end-to-end tests (`*.spec.ts`) and auth setup                                                                         |
+| `public/`                                   | Static assets served as-is                                                                                                       |
+| `vite.config.ts`, `playwright.config.ts`    | Build/dev server and E2E config                                                                                                  |
 
 Feature folders in `src/features/`:
 `actions`, `admin`, `alerts`, `auth`, `campaigns`, `dashboard`, `integrations`, `onboarding`, `profile`, `public`, `recommendations`, `reports`, `search-terms`, `settings`, `targets`, `team`.
@@ -74,15 +74,15 @@ Feature folders in `src/features/`:
 
 ### `apps/worker` — Background Worker (BullMQ, Vitest)
 
-| Path | Contains |
-| --- | --- |
-| `src/main.ts` | Worker entry point — starts queue consumers |
-| `src/processors.ts` | Job handlers (data sync, reports, alerts, emails, etc.) |
-| `src/context.ts` | Shared dependencies (DB, Redis, providers) injected into processors |
-| `src/scheduler/` | Recurring-job scheduling (`schedule.ts`) and the scheduler tick loop (`tick.ts`) |
-| `src/cli/seed.ts` | CLI script to seed the database with mock data (`pnpm db:seed`) |
-| `test/` | Worker unit tests |
-| `storage/` | Local file output (e.g. generated reports) when running the worker |
+| Path                | Contains                                                                         |
+| ------------------- | -------------------------------------------------------------------------------- |
+| `src/main.ts`       | Worker entry point — starts queue consumers                                      |
+| `src/processors.ts` | Job handlers (data sync, reports, alerts, emails, etc.)                          |
+| `src/context.ts`    | Shared dependencies (DB, Redis, providers) injected into processors              |
+| `src/scheduler/`    | Recurring-job scheduling (`schedule.ts`) and the scheduler tick loop (`tick.ts`) |
+| `src/cli/seed.ts`   | CLI script to seed the database with mock data (`pnpm db:seed`)                  |
+| `test/`             | Worker unit tests                                                                |
+| `storage/`          | Local file output (e.g. generated reports) when running the worker               |
 
 ---
 
@@ -90,80 +90,80 @@ Feature folders in `src/features/`:
 
 All packages are consumed by the apps as `@adpulse/<name>` workspace dependencies.
 
-| Package | Type of code |
-| --- | --- |
-| `config` | Typed environment variable parsing/validation (`env.ts`) and queue name constants (`queues.ts`) |
-| `core` | Framework-agnostic domain logic shared by API and worker (see below) |
-| `database` | `prisma/schema.prisma` (data model), `prisma/migrations/` (SQL migrations), `src/` (exported Prisma client and migrate script) |
-| `eslint-config` | Shared ESLint configs: `base.js` (Node/TS) and `react.js` (frontend) |
-| `kpi` | KPI definitions and formulas (CTR, CPC, ROAS…), decimal math, period comparison, formatting |
-| `mock-data` | Seeded random generator and catalog used to produce realistic fake ad data |
-| `tsconfig` | Base TypeScript configs: `base.json`, `library.json`, `nest.json`, `react.json` |
-| `types` | Shared TypeScript types: API contracts, enums, display labels, role permissions |
-| `ui` | Reusable React/MUI components used by the web app: `DataTable`, `KpiCard`, `StatusChip`, `ConfirmDialog`, layout, loading/empty states, theme, accessibility helpers |
-| `validation` | Shared input validation schemas used by both frontend forms and backend DTOs |
+| Package         | Type of code                                                                                                                                                         |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `config`        | Typed environment variable parsing/validation (`env.ts`) and queue name constants (`queues.ts`)                                                                      |
+| `core`          | Framework-agnostic domain logic shared by API and worker (see below)                                                                                                 |
+| `database`      | `prisma/schema.prisma` (data model), `prisma/migrations/` (SQL migrations), `src/` (exported Prisma client and migrate script)                                       |
+| `eslint-config` | Shared ESLint configs: `base.js` (Node/TS) and `react.js` (frontend)                                                                                                 |
+| `kpi`           | KPI definitions and formulas (CTR, CPC, ROAS…), decimal math, period comparison, formatting                                                                          |
+| `mock-data`     | Seeded random generator and catalog used to produce realistic fake ad data                                                                                           |
+| `tsconfig`      | Base TypeScript configs: `base.json`, `library.json`, `nest.json`, `react.json`                                                                                      |
+| `types`         | Shared TypeScript types: API contracts, enums, display labels, role permissions                                                                                      |
+| `ui`            | Reusable React/MUI components used by the web app: `DataTable`, `KpiCard`, `StatusChip`, `ConfirmDialog`, layout, loading/empty states, theme, accessibility helpers |
+| `validation`    | Shared input validation schemas used by both frontend forms and backend DTOs                                                                                         |
 
 ### `packages/core/src` — Domain modules
 
-| Folder / file | Contains |
-| --- | --- |
-| `providers/` | External data providers: Google Ads, Google Analytics, Google OAuth, HTTP helper, mock providers, and a factory to pick real vs mock |
-| `sync/` | Data synchronisation service, sync planning, and field mapping from provider data to the DB |
-| `queue/` | BullMQ queue definitions |
-| `alerts/` | Alert rule evaluation |
-| `recommendations/` | Recommendation generation logic |
-| `targets/` | Target/goal tracking logic |
-| `search-terms/` | Search-term analysis |
-| `metrics/` | Metric aggregation |
-| `reports/` | Report generation (PDF/XLSX) |
-| `email/` | Email sending |
-| `audit/` | Audit log writing |
-| `crypto/` | Encryption helpers (e.g. for stored OAuth tokens) |
-| `storage/` | File storage abstraction (local disk / cloud) |
-| `maintenance/` | Cleanup and housekeeping jobs |
-| `observability/` | Metrics/tracing hooks |
-| `errors.ts`, `logger.ts`, `retry.ts` | Shared error classes, logger, retry/backoff utility |
+| Folder / file                        | Contains                                                                                                                             |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `providers/`                         | External data providers: Google Ads, Google Analytics, Google OAuth, HTTP helper, mock providers, and a factory to pick real vs mock |
+| `sync/`                              | Data synchronisation service, sync planning, and field mapping from provider data to the DB                                          |
+| `queue/`                             | BullMQ queue definitions                                                                                                             |
+| `alerts/`                            | Alert rule evaluation                                                                                                                |
+| `recommendations/`                   | Recommendation generation logic                                                                                                      |
+| `targets/`                           | Target/goal tracking logic                                                                                                           |
+| `search-terms/`                      | Search-term analysis                                                                                                                 |
+| `metrics/`                           | Metric aggregation                                                                                                                   |
+| `reports/`                           | Report generation (PDF/XLSX)                                                                                                         |
+| `email/`                             | Email sending                                                                                                                        |
+| `audit/`                             | Audit log writing                                                                                                                    |
+| `crypto/`                            | Encryption helpers (e.g. for stored OAuth tokens)                                                                                    |
+| `storage/`                           | File storage abstraction (local disk / cloud)                                                                                        |
+| `maintenance/`                       | Cleanup and housekeeping jobs                                                                                                        |
+| `observability/`                     | Metrics/tracing hooks                                                                                                                |
+| `errors.ts`, `logger.ts`, `retry.ts` | Shared error classes, logger, retry/backoff utility                                                                                  |
 
 ---
 
 ## Infrastructure, Docs & Tooling
 
-| Path | Contains |
-| --- | --- |
-| `infrastructure/azure/` | Azure infrastructure-as-code (`main.bicep` + `main.bicepparam`) |
-| `infrastructure/nginx/` | Nginx config template and security headers used to serve the web app / proxy the API |
-| `docs/` | `ARCHITECTURE.md`, `API.md`, `DECISIONS.md`, `DEPLOYMENT.md`, `GOOGLE_INTEGRATION.md` |
-| `.github/workflows/ci.yml` | CI pipeline: lint, typecheck, tests, build |
-| `storage/` | Runtime-generated files such as reports (git-ignored) |
-| `.tools/` | Local CLI binaries (git-ignored) |
+| Path                       | Contains                                                                              |
+| -------------------------- | ------------------------------------------------------------------------------------- |
+| `infrastructure/azure/`    | Azure infrastructure-as-code (`main.bicep` + `main.bicepparam`)                       |
+| `infrastructure/nginx/`    | Nginx config template and security headers used to serve the web app / proxy the API  |
+| `docs/`                    | `ARCHITECTURE.md`, `API.md`, `DECISIONS.md`, `DEPLOYMENT.md`, `GOOGLE_INTEGRATION.md` |
+| `.github/workflows/ci.yml` | CI pipeline: lint, typecheck, tests, build                                            |
+| `storage/`                 | Runtime-generated files such as reports (git-ignored)                                 |
+| `.tools/`                  | Local CLI binaries (git-ignored)                                                      |
 
 ## Root files
 
-| File | Purpose |
-| --- | --- |
-| `package.json` | Root scripts (`dev`, `build`, `test`, `db:*`) that delegate to Turborepo |
-| `pnpm-workspace.yaml` | Declares `apps/*` and `packages/*` as workspaces |
-| `turbo.json` | Turborepo task pipeline and caching |
-| `tsconfig.base.json` | Root TypeScript settings |
-| `docker-compose.yml` | Local dev services (Postgres, Redis, etc.) |
-| `docker-compose.production.yml` | Production container composition |
-| `.env.example` / `.env` | Environment variable template / local values (`.env` must not be committed) |
-| `.prettierrc.json`, `.prettierignore` | Code formatting config |
-| `.nvmrc`, `.npmrc` | Node version and pnpm settings |
-| `README.md`, `CONTRIBUTING.md`, `SECURITY.md`, `AGENTS.md` | Project, contribution, security, and AI-agent guidance |
+| File                                                       | Purpose                                                                     |
+| ---------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `package.json`                                             | Root scripts (`dev`, `build`, `test`, `db:*`) that delegate to Turborepo    |
+| `pnpm-workspace.yaml`                                      | Declares `apps/*` and `packages/*` as workspaces                            |
+| `turbo.json`                                               | Turborepo task pipeline and caching                                         |
+| `tsconfig.base.json`                                       | Root TypeScript settings                                                    |
+| `docker-compose.yml`                                       | Local dev services (Postgres, Redis, etc.)                                  |
+| `docker-compose.production.yml`                            | Production container composition                                            |
+| `.env.example` / `.env`                                    | Environment variable template / local values (`.env` must not be committed) |
+| `.prettierrc.json`, `.prettierignore`                      | Code formatting config                                                      |
+| `.nvmrc`, `.npmrc`                                         | Node version and pnpm settings                                              |
+| `README.md`, `CONTRIBUTING.md`, `SECURITY.md`, `AGENTS.md` | Project, contribution, security, and AI-agent guidance                      |
 
 ## Where to put new code
 
-| You are adding… | Put it in |
-| --- | --- |
-| A new API endpoint | `apps/api/src/modules/<feature>/` (controller + service + dto) |
-| A new page/screen | `apps/web/src/features/<feature>/` and register it in `apps/web/src/router.tsx` |
-| A generic UI component used across apps | `packages/ui/src/` |
-| A component used only by the web app | `apps/web/src/components/` |
-| Business logic shared by API and worker | `packages/core/src/<domain>/` |
-| A background or scheduled job | `apps/worker/src/processors.ts` and `apps/worker/src/scheduler/` |
-| A DB table or column | `packages/database/prisma/schema.prisma`, then `pnpm db:migrate:dev` |
-| A shared type, enum, or permission | `packages/types/src/` |
-| A validation schema | `packages/validation/src/` |
-| A KPI formula | `packages/kpi/src/` |
-| A new environment variable | `packages/config/src/env.ts` and `.env.example` |
+| You are adding…                         | Put it in                                                                       |
+| --------------------------------------- | ------------------------------------------------------------------------------- |
+| A new API endpoint                      | `apps/api/src/modules/<feature>/` (controller + service + dto)                  |
+| A new page/screen                       | `apps/web/src/features/<feature>/` and register it in `apps/web/src/router.tsx` |
+| A generic UI component used across apps | `packages/ui/src/`                                                              |
+| A component used only by the web app    | `apps/web/src/components/`                                                      |
+| Business logic shared by API and worker | `packages/core/src/<domain>/`                                                   |
+| A background or scheduled job           | `apps/worker/src/processors.ts` and `apps/worker/src/scheduler/`                |
+| A DB table or column                    | `packages/database/prisma/schema.prisma`, then `pnpm db:migrate:dev`            |
+| A shared type, enum, or permission      | `packages/types/src/`                                                           |
+| A validation schema                     | `packages/validation/src/`                                                      |
+| A KPI formula                           | `packages/kpi/src/`                                                             |
+| A new environment variable              | `packages/config/src/env.ts` and `.env.example`                                 |

@@ -7,11 +7,11 @@ reference.
 Serverless free tiers (Vercel, Render, Railway) do not fit this stack: the worker is a long-running BullMQ
 process with Chromium, the api and worker share a report volume, and the queues need an unmetered Redis.
 
-| Component | Service                                                                 |
-| --------- | ----------------------------------------------------------------------- |
-| Server    | Oracle Cloud Always Free, Ampere A1 (up to 4 OCPU / 24 GB RAM, ARM64)   |
-| Domain    | [DuckDNS](https://www.duckdns.org) subdomain                            |
-| HTTPS     | Caddy with automatic Let's Encrypt certificates                         |
+| Component | Service                                                                    |
+| --------- | -------------------------------------------------------------------------- |
+| Server    | Oracle Cloud Always Free, Ampere A1 (up to 4 OCPU / 24 GB RAM, ARM64)      |
+| Domain    | [DuckDNS](https://www.duckdns.org) subdomain                               |
+| HTTPS     | Caddy with automatic Let's Encrypt certificates                            |
 | Data      | Postgres, Redis and report storage as Compose services / volumes on the VM |
 
 ## 1. Push the code to GitHub
