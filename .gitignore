@@ -6,7 +6,8 @@ coverage/
 .env
 .env.*
 !.env.example
-storage/
+/storage/
+apps/worker/storage/
 playwright-report/
 test-results/
 .auth/
