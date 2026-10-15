@@ -16,7 +16,8 @@ const alias = {
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, fileURLToPath(new URL('../..', import.meta.url)), 'VITE_');
-  const apiTarget = env.VITE_API_PROXY_TARGET || 'http://localhost:3000';
+  // Prefer 127.0.0.1 over localhost so Windows IPv6 (::1) cannot hit another process on the same port.
+  const apiTarget = env.VITE_API_PROXY_TARGET || 'http://127.0.0.1:3000';
   return {
     plugins: [react()],
     resolve: { alias, dedupe: ['react', 'react-dom', '@mui/material', '@emotion/react', '@emotion/styled'] },
